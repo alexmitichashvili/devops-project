@@ -4,7 +4,7 @@ URL=${1:-http://127.0.0.1:8000/health}
 mkdir -p logs
 
 # curl returns only HTTP response (000 if server does not respond)
-CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "$URL")
+CODE=$(curl -s --noproxy '*' -o /dev/null -w "%{http_code}" --max-time 5 "$URL")
 TIME=$(date '+%Y-%m-%d %H:%M:%S')
 
 if [ "$CODE" = "200" ]; then
