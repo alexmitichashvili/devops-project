@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Blue-Green deploy: new version is put in inactive directory, the old one stops, new starts.
-set e
+set -e
 
-PROD = production
+PROD=production
 mkdir -p $PROD
 
 # Which directory is active right now? If deploys did not happen before - "none"
