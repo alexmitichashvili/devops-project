@@ -4,7 +4,7 @@
 Small web-service written with Flask, that counts stats according to provided text:
 characters count, words count, unique words count and the longest word.
 
-Stack: Python 3.11, Flask, pytest, Git/GitHub, GitHub, GitHub Actions, Bash, curl.
+Stack: Python 3.11, Flask, Docker, pytest, Git/GitHub, GitHub, GitHub Actions, Bash, curl.
 
 Endpoints:
 - `/` - web-interface
@@ -31,6 +31,18 @@ version stops, new starts. Then `scripts/healthcheck.sh` checks `/health`. If ch
 
 ## Monitoring
 `scripts/healthcheck.sh` sends `curl` request to `/health` and writes the result in `logs`health.log`.
+
+## Docker
+The application can run in a Docker container (`Dockerfile` in the repository root).
+
+```bash
+docker build -t text-stats:1.0 .
+docker run -d --name text-stats -p 8000:8000 text-stats:1.0
+bash scripts/healthcheck.sh
+```
+
+In the pipeline, the Build stage builds the image (tagged with the commit SHA),
+starts a container and checks `/health` before moving on to Test.
 
 ## Workflow diagram
 
@@ -63,6 +75,9 @@ The deployment, health check and rollback successful.
 ### Working app
 ![app](docs/app.png)
 App launched locally on `http://127.0.0.1:8000`.
+
+![docker](docs/docker.png)
+The container is running ('docker ps') and the application answers through it.
 
 ## Local launch
 ```bash
