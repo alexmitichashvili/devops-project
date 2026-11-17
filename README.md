@@ -76,6 +76,7 @@ The deployment, health check and rollback successful.
 ![app](docs/app.png)
 App launched locally on `http://127.0.0.1:8000`.
 
+### Docker run
 ![docker](docs/docker.png)
 The container is running ('docker ps') and the application answers through it.
 
