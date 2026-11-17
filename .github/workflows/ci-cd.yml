@@ -19,6 +19,14 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check syntax
         run: python -m py_compile app/*.py
+      - name: Build Docker image
+        run: docker build -t text-stats:${{ github.sha }} .
+      - name: Run container and check health 
+        run: |
+          docker run -d --name text-stats -p 8000:8000 text-stats:${{ guthub.sha }}
+          sleep 3
+          bash scripts/healthcheck.sh 
+          docker stop text-stats 
 
   test:
     name: Test
