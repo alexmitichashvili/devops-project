@@ -76,6 +76,9 @@ The deployment, health check and rollback successful.
 ![app](docs/app.png)
 App launched locally on `http://127.0.0.1:8000`.
 
+![docker](docs/docker.png)
+The container is running ('docker ps') and the application answers through it.
+
 ## Local launch
 ```bash
 python -m venv venv && source venv/bin/activate
